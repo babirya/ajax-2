@@ -1,0 +1,22 @@
+
+
+document.getElementById('bn').addEventListener('click',loadtext) ; 
+
+function loadtext(){
+ //  1create XHR OBJECT  
+ var xhr= new XMLHttpRequest();  
+ // 2 open >> type ,url/file , async  
+ xhr.open('GET','sample.txt',true) ;
+
+ // onload 
+
+ xhr.onload=function(){
+         if(this.status==200)
+         {
+           console.log(this.responseText);
+         }
+    } 
+   // send request 
+    xhr.send(); 
+
+}

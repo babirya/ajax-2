@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax 1 - text file</title>
+</head>
+<body>
+    <button id="bn"> Get text now</button>  
+    <br> <br> 
+
+    <div id="text"></div>
+  
+        <!-- js part here -->
+    <script> 
+      // create a function to make ajax call 
+    
+       // create evenlistener  
+ document.getElementById('bn').addEventListener('click',loadtext); 
+
+function loadtext(){
+
+var xhr= new XMLHttpRequest(); 
+// open 
+xhr.open('GET','sample.txt','true') ;
+
+
+// optional -- used for loaders 
+console.log(xhr.readyState); 
+
+xhr.onprogress=function(){
+    console.log(xhr.readyState);   
+} 
+
+
+
+
+// onload 
+ xhr.onload=function(){
+  
+if(xhr.status==200)
+   {
+      document.getElementById('text').innerHTML=xhr.responseText;
+   }else if(this.status==404)
+   {
+    document.getElementById('text').innerHTML='not found';
+   }
+
+ }  
+
+ xhr.onerror=function (){
+
+   console.log('request error ');
+
+ }
+
+//                //onreadystatechange  
+//                console.log(xhr.readyState);
+
+    // xhr.onreadystatechange=function(){
+    //  console.log(xhr.readyState);
+    //   if (this.readyState==4 && this.status==200){
+    //  // console.log(this.responseText);
+    //   }
+
+
+xhr.send(); 
+   }
+
+
+            // http  statuses
+            // http status 
+            // 200 : OK 
+            // 403 : Forbidden 
+            // 404 : Not Found 
+
+
+            // ready states values  
+    // 0 : request not initialized
+    // 1 : server connection established
+     // 2 :  request receveid 
+     // 3 processing request 
+     // 4 : request finished and response is ready 
+
+    </script>
+</body>
+</html>
